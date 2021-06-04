@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import components.DatePicker;
 import components.SelectStateAndCity;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 

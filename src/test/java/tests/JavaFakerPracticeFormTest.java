@@ -1,23 +1,23 @@
 package tests;
 
-
-import components.DatePicker;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-import java.io.File;
+import java.util.Locale;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byName;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-public class PageObjectPracticeFormTest extends TestBase {
+public class JavaFakerPracticeFormTest extends TestBase{
 
-    String firstName = "Dmitry",
-            lastName = "Rejman",
-            userEmail = "bgdt@gmail.com",
-            userNumber = "9527776556",
+    Faker faker = new Faker(Locale.UK);
+
+    String firstName = faker.name().firstName(),
+            lastName = faker.name().lastName(),
+            userEmail = faker.internet().emailAddress(),
+            userNumber = faker.number().digits(10),
             userGender = "Male",
             userSubjects = "Computer Science",
             userHobbies = "Sports",
@@ -25,17 +25,19 @@ public class PageObjectPracticeFormTest extends TestBase {
             yearOfBirth = "1995",
             dayOfBirth = "005",
             dayWeekOfBirth = "Wednesday",
-            currentAdress = "Unter den Linden",
+            currentAdress = faker.address().fullAddress(),
             state = "NCR",
             city = "Gurgaon",
             picture = "qa.jpg";
 
     RegistrationPage registationPage = new RegistrationPage();
-
+    @Test
+    void openPage() {
+        open("https://demoqa.com/automation-practice-form");
+    }
     @Test
     void successfulPracticeForm() {
 
-        open("https://demoqa.com/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         registationPage.typeFirstName(firstName);
         registationPage.typeLastName(lastName);
@@ -50,18 +52,18 @@ public class PageObjectPracticeFormTest extends TestBase {
         registationPage.setCityAndState(state, city);
         registationPage.setSubButton();
         registationPage.checkTable(firstName,
-                                    lastName,
-                                    userEmail,
-                                    userGender,
-                                    userNumber,
-                                    userSubjects,
-                                    userHobbies,
-                                    monthOfBirth,
-                                    yearOfBirth,
-                                    dayOfBirth,
-                                    currentAdress,
-                                    state,
-                                    city,
-                                    picture);
+                lastName,
+                userEmail,
+                userGender,
+                userNumber,
+                userSubjects,
+                userHobbies,
+                monthOfBirth,
+                yearOfBirth,
+                dayOfBirth,
+                currentAdress,
+                state,
+                city,
+                picture);
     }
 }

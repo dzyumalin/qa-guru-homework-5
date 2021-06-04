@@ -1,23 +1,19 @@
 package tests;
 
-
-import components.DatePicker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byName;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
+import static utils.RandomUtils.*;
 
-public class PageObjectPracticeFormTest extends TestBase {
+public class RandomUtilsPracticeFormTest extends TestBase{
 
-    String firstName = "Dmitry",
-            lastName = "Rejman",
-            userEmail = "bgdt@gmail.com",
-            userNumber = "9527776556",
+    String firstName = getRandomString(10),
+            lastName = getRandomString(10),
+            userEmail = getRandomEmail(),
+            userNumber = getRandomPhone(1111111111L, 3333333333L).toString(),
             userGender = "Male",
             userSubjects = "Computer Science",
             userHobbies = "Sports",
@@ -50,18 +46,18 @@ public class PageObjectPracticeFormTest extends TestBase {
         registationPage.setCityAndState(state, city);
         registationPage.setSubButton();
         registationPage.checkTable(firstName,
-                                    lastName,
-                                    userEmail,
-                                    userGender,
-                                    userNumber,
-                                    userSubjects,
-                                    userHobbies,
-                                    monthOfBirth,
-                                    yearOfBirth,
-                                    dayOfBirth,
-                                    currentAdress,
-                                    state,
-                                    city,
-                                    picture);
+                lastName,
+                userEmail,
+                userGender,
+                userNumber,
+                userSubjects,
+                userHobbies,
+                monthOfBirth,
+                yearOfBirth,
+                dayOfBirth,
+                currentAdress,
+                state,
+                city,
+                picture);
+        }
     }
-}
