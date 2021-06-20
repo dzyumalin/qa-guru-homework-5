@@ -9,6 +9,7 @@ import java.util.Locale;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
 
 public class JavaFakerPracticeFormTest extends TestBase{
 
