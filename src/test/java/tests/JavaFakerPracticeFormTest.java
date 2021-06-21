@@ -32,19 +32,15 @@ public class JavaFakerPracticeFormTest extends TestBase{
             picture = "qa.jpg";
 
     RegistrationPage registationPage = new RegistrationPage();
+
     @Test
-    void openPage() {
+    void successfulPracticeForm() {
         step("Checking the registration form header", () -> {
             open("https://demoqa.com/automation-practice-form");
         });
-    }
-    @Test
-    void successfulPracticeForm() {
-
         step("Checking the registration form header", () -> {
             $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         });
-
         step("Fill out the student registration form", () -> {
             registationPage.typeFirstName(firstName);
             registationPage.typeLastName(lastName);
